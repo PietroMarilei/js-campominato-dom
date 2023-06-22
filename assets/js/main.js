@@ -8,8 +8,12 @@ let gameOver = false;
 
 let numbOfCells;
 
-let bombsArray = []
+let bombsArray = [];
 //le bombe sono 16 di default
+
+const scoreTable = [];
+
+let playerPoints = 0;
 
 // here's start the play Event 🎮 ❗❗❗
 
@@ -24,6 +28,10 @@ buttonElement.addEventListener('click', function () {
     console.log('bombsArray', bombsArray);
 
     bombAdder('.cell', bombsArray)
+
+    //scorer calculator down here
+    scorerTable()
+
 })
 
 /*
@@ -40,7 +48,6 @@ function cellCreator(numbOfCells) {
     let gridLength = Math.sqrt(numbOfCells);
 
     for (let i = 1; i <= numbOfCells; i++) {
-        console.log('creato cella');
 
         const singleCellEl = document.createElement('div');
         singleCellEl.innerHTML = i;
@@ -49,10 +56,11 @@ function cellCreator(numbOfCells) {
 
         // add clickable
         singleCellEl.addEventListener('click', function (e) {
-            this.classList.toggle('active');
+            this.classList.add('active');
             console.log('cliccato cella num ', this.innerText);
             //gameover function down here
-            gameOverFun(singleCellEl);
+            gameOverFunc(singleCellEl, playerPoints, scoreTable);
+
         })
 
         containerElement.append(singleCellEl);
@@ -79,15 +87,37 @@ function bombAdder(cellClass, bombsArr) {
 
         if (bombsArr.includes(parseInt(singleCell.textContent))) {
             singleCell.classList.add('bomb')
-            singleCell.innerText = '💣'
+            singleCell.innerText += '💣'
         }
 
     }
 
 }
 
-function gameOverFun(singleCellELement) {
+function gameOverFunc(singleCellELement, playerPnt, scorerTableArr) {
     if (singleCellELement.classList.contains('bomb')) {
         containerElement.innerHTML = `<div class="">You lose</div>`
+    } else {
+        playerPnt++
+        console.log('punti utente', playerPoints);
+        scorerTableArr.splice(scorerTableArr.indexOf(Number(singleCellELement.innerText)), 1);
+        console.log(scorerTableArr);
     }
+}
+
+
+
+function scorerTable() {
+    const allCellsArr = document.querySelectorAll('.cell');
+
+
+    for (let i = 0; i < allCellsArr.length; i++) {
+        const singleCellEl = allCellsArr[i];
+        if (!singleCellEl.classList.contains('bomb')) {
+            scoreTable.push(Number(singleCellEl.innerText))
+        }
+    }
+
+    console.log(scoreTable);
+
 }
