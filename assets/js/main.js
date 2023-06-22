@@ -60,6 +60,9 @@ function cellCreator(numbOfCells) {
             console.log('cliccato cella num ', this.innerText);
             //gameover function down here
             gameOverFunc(singleCellEl, playerPoints, scoreTable);
+            if (scoreTable.length == 0) {
+                containerElement.innerHTML = `<div class="">You win</div>`
+            }
 
         })
 
