@@ -15,6 +15,8 @@ const scoreTable = [];
 
 let playerPoints = 0;
 
+let testVar = 0;
+
 // here's start the play Event 🎮 ❗❗❗
 
 buttonElement.addEventListener('click', function () {
@@ -51,19 +53,22 @@ function cellCreator(numbOfCells) {
 
         const singleCellEl = document.createElement('div');
         singleCellEl.innerHTML = i;
-        singleCellEl.classList.add('cell');
+        singleCellEl.classList.add('cell', 'hidden');
         singleCellEl.style.width = `calc(100% / ${gridLength})`;
 
         // add clickable
         singleCellEl.addEventListener('click', function (e) {
             this.classList.add('active');
+            this.classList.remove('hidden')
             console.log('cliccato cella num ', this.innerText);
             //gameover function down here
-            gameOverFunc(singleCellEl, playerPoints, scoreTable);
+            gameOverFunc(singleCellEl, scoreTable);
             // you win cond down there
             if (scoreTable.length == 0) {
                 containerElement.innerHTML = `<div class="">You win</div>`
             }
+
+            test(testVar)
 
         })
 
@@ -98,12 +103,13 @@ function bombAdder(cellClass, bombsArr) {
 
 }
 
-function gameOverFunc(singleCellELement, playerPnt, scorerTableArr) {
+function gameOverFunc(singleCellELement, scorerTableArr) {
     if (singleCellELement.classList.contains('bomb')) {
         containerElement.innerHTML = `<div class="">You lose</div>`
     } else {
-        playerPnt++
-        console.log('punti utente', playerPnt);
+        playerPoints++;
+        console.log('punti utente');
+
         scorerTableArr.splice(scorerTableArr.indexOf(Number(singleCellELement.innerText)), 1);
         console.log(scorerTableArr);
     }
@@ -124,4 +130,9 @@ function scorerTable() {
 
     console.log(scoreTable);
 
+}
+
+function test(testableVar) {
+    return testableVar++
+    console.log(testableVar);
 }

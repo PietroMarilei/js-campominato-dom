@@ -15,22 +15,28 @@
 .cell {
     width: calc(100% / 10);
     aspect-ratio: 1;
-    border: 1px solid;
+
 
     display: flex;
     justify-content: center;
     align-items: center;
     cursor: pointer;
+
+    background-color: #a8a8a8;
+    box-shadow: -2px -2px #bcbcbc, -2px 0 #bcbcbc, 0 -2px #bcbcbc, -4px -4px rgb(220, 220, 220), -4px 0 rgb(220, 220, 220), 0 -4px rgb(220, 220, 220), 2px 2px #818181, 0 2px #818181, 2px 0 #818181, 2px -2px #bcbcbc, -2px 2px #818181, -4px 2px rgb(220, 220, 220), -4px 4px rgb(42, 42, 42), 4px 4px rgb(42, 42, 42), 4px 0 rgb(42, 42, 42), 0 4px rgb(42, 42, 42), 2px -4px rgb(220, 220, 220), 4px -4px rgb(42, 42, 42);
 }
 
 .active {
-    background-color: lightskyblue;
-    border: 1px solid yellow;
+    background-color: rgb(202, 202, 202);
+
+    box-shadow: -2px -2px #818181, -2px 0 #818181, 0 -2px #818181, -4px -4px rgb(42, 42, 42), -4px 0 rgb(42, 42, 42), 0 -4px rgb(42, 42, 42), 2px 2px #e0dede, 0 2px #e0dede, 2px 0 #e0dede, 2px -2px #818181, -2px 2px #e0dede, -4px 2px rgb(42, 42, 42), -4px 4px white, 4px 4px white, 4px 0 white, 0 4px white, 2px -4px rgb(42, 42, 42), 4px -4px white;
 }
 
 .bomb {
     background-color: rgb(160, 56, 56);
 }
+
+.hidden {}
 
 #play_button {
 
