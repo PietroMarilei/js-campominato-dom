@@ -8,14 +8,18 @@ let numbOfCells
 
 let bombsArray = []
 //le bombe sono 16 di default
-bombGenerator()
 
 buttonElement.addEventListener('click', function () {
     containerElement.innerHTML = ''
     // questo affare svuota la tabella prima che succeda altro
 
+    numbOfCells = selectElement.value;
     cellCreator(numbOfCells);
 
+    bombGenerator(numbOfCells)
+    console.log('bombsArray', bombsArray);
+
+    bombAdder()
 })
 
 /*
@@ -27,7 +31,7 @@ function rndNumb(min, max) {
 }
 
 function cellCreator(numbOfCells) {
-    numbOfCells = selectElement.value
+
     //prendo il numero delle celle selezionate
     let gridLength = Math.sqrt(numbOfCells);
 
@@ -40,7 +44,6 @@ function cellCreator(numbOfCells) {
         singleCellEl.style.width = `calc(100% / ${gridLength})`;
 
         // add clickable
-
         singleCellEl.addEventListener('click', function (e) {
             this.classList.toggle('active');
             console.log('cliccato cella num ', this.innerText);
@@ -51,14 +54,26 @@ function cellCreator(numbOfCells) {
 
 }
 
-function bombGenerator() {
+function bombGenerator(maxCells) {
 
     while (bombsArray.length < 16) {
-        let singleRndNumb = rndNumb(1, 16);
+        let singleRndNumb = rndNumb(1, maxCells);
 
         if (!bombsArray.includes(singleRndNumb)) {
             bombsArray.push(singleRndNumb)
         }
     }
-    console.log('bombsArray', bombsArray);
+}
+
+function bombAdder() {
+    const allCellsArr = document.querySelectorAll('.cell')
+    for (let i = 0; i < allCellsArr.length; i++) {
+        const singleCell = allCellsArr[i];
+
+        if (bombsArray.includes(singleCell.innerHTML)) {
+            console.log('Sono una bomba 💣');
+        }
+
+    }
+
 }
