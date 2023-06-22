@@ -60,6 +60,7 @@ function cellCreator(numbOfCells) {
             console.log('cliccato cella num ', this.innerText);
             //gameover function down here
             gameOverFunc(singleCellEl, playerPoints, scoreTable);
+            // you win cond down there
             if (scoreTable.length == 0) {
                 containerElement.innerHTML = `<div class="">You win</div>`
             }
@@ -102,7 +103,7 @@ function gameOverFunc(singleCellELement, playerPnt, scorerTableArr) {
         containerElement.innerHTML = `<div class="">You lose</div>`
     } else {
         playerPnt++
-        console.log('punti utente', playerPoints);
+        console.log('punti utente', playerPnt);
         scorerTableArr.splice(scorerTableArr.indexOf(Number(singleCellELement.innerText)), 1);
         console.log(scorerTableArr);
     }
