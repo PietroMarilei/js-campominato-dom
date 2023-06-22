@@ -28,6 +28,10 @@
     border: 1px solid yellow;
 }
 
+.bomb {
+    background-color: rgb(160, 56, 56);
+}
+
 #play_button {
 
     appearance: none;

@@ -72,6 +72,7 @@ function bombAdder() {
 
         if (bombsArray.includes(parseInt(singleCell.textContent))) {
             singleCell.classList.add('bomb')
+            singleCell.innerText = '💣'
         }
 
     }
