@@ -70,8 +70,8 @@ function bombAdder() {
     for (let i = 0; i < allCellsArr.length; i++) {
         const singleCell = allCellsArr[i];
 
-        if (bombsArray.includes(singleCell.innerHTML)) {
-            console.log('Sono una bomba 💣');
+        if (bombsArray.includes(parseInt(singleCell.textContent))) {
+            singleCell.classList.add('bomb')
         }
 
     }
