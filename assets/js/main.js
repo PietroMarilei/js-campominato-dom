@@ -5,9 +5,9 @@ const selectElement = document.getElementById("difficulty");
 const containerElement = document.getElementById('cell_container')
 
 let numbOfCells
-const bombsArray = []
 //le bombe sono 16 di default
 
+let bombsArray = []
 bombGenerator()
 
 buttonElement.addEventListener('click', function () {
@@ -47,11 +47,12 @@ function cellCreator(numbOfCells) {
 
 }
 
-// function bombGenerator() {
-//     let y = 0
-//     while (y < 16) {
-//         console.log('bomba', y);
+function bombGenerator() {
 
-//         y++
-//     }
-// }
+    while (bombsArray.lenght < 16) {
+        let test = 1
+
+        bombsArray.push(test)
+    }
+    console.log(bombsArray);
+}
