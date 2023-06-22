@@ -2,12 +2,16 @@
 const buttonElement = document.getElementById("play_button");
 const selectElement = document.getElementById("difficulty");
 
-const containerElement = document.getElementById('cell_container')
+const containerElement = document.getElementById('cell_container');
 
-let numbOfCells
+let gameOver = false;
+
+let numbOfCells;
 
 let bombsArray = []
 //le bombe sono 16 di default
+
+// here's start the play Event 🎮 ❗❗❗
 
 buttonElement.addEventListener('click', function () {
     containerElement.innerHTML = ''
@@ -19,7 +23,7 @@ buttonElement.addEventListener('click', function () {
     bombGenerator(numbOfCells)
     console.log('bombsArray', bombsArray);
 
-    bombAdder()
+    bombAdder('.cell', bombsArray)
 })
 
 /*
@@ -47,9 +51,12 @@ function cellCreator(numbOfCells) {
         singleCellEl.addEventListener('click', function (e) {
             this.classList.toggle('active');
             console.log('cliccato cella num ', this.innerText);
+            //gameover function down here
+            gameOverFun(singleCellEl);
         })
 
         containerElement.append(singleCellEl);
+
     }
 
 }
@@ -65,16 +72,22 @@ function bombGenerator(maxCells) {
     }
 }
 
-function bombAdder() {
-    const allCellsArr = document.querySelectorAll('.cell')
+function bombAdder(cellClass, bombsArr) {
+    const allCellsArr = document.querySelectorAll(cellClass)
     for (let i = 0; i < allCellsArr.length; i++) {
         const singleCell = allCellsArr[i];
 
-        if (bombsArray.includes(parseInt(singleCell.textContent))) {
+        if (bombsArr.includes(parseInt(singleCell.textContent))) {
             singleCell.classList.add('bomb')
             singleCell.innerText = '💣'
         }
 
     }
 
+}
+
+function gameOverFun(singleCellELement) {
+    if (singleCellELement.classList.contains('bomb')) {
+        containerElement.innerHTML = `<div class="">You lose</div>`
+    }
 }
