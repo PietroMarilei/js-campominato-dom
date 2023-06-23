@@ -3,6 +3,7 @@ const buttonElement = document.getElementById("play_button");
 const selectElement = document.getElementById("difficulty");
 
 const containerElement = document.getElementById('cell_container');
+const pointCounterEl = document.getElementById('pointsCounter');
 
 let gameOver = false;
 
@@ -68,8 +69,7 @@ function cellCreator(numbOfCells) {
                 containerElement.innerHTML = `<div class="">You win</div>`
             }
 
-            test(testVar)
-
+            pointCounterEl.innerHTML = `<div class="">i tuoi punti sono ${playerPoints}</div>`
         })
 
         containerElement.append(singleCellEl);
@@ -116,7 +116,6 @@ function gameOverFunc(singleCellELement, scorerTableArr) {
 }
 
 
-
 function scorerTable() {
     const allCellsArr = document.querySelectorAll('.cell');
 
@@ -130,9 +129,4 @@ function scorerTable() {
 
     console.log(scoreTable);
 
-}
-
-function test(testableVar) {
-    return testableVar++
-    console.log(testableVar);
 }

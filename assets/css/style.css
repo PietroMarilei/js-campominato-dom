@@ -4,6 +4,8 @@
     box-sizing: border-box;
 }
 
+body {}
+
 .container {
     background-color: aquamarine;
     padding: 3rem;
